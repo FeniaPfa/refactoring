@@ -37,6 +37,7 @@ function statement(invoice, plays) {
   for (let perf of invoice.performances) {
     const play = plays[perf.playID];
     let thisAmount = 0;
+
     switch (play.type) {
       case 'tragedy':
         thisAmount = 40000;
@@ -54,6 +55,7 @@ function statement(invoice, plays) {
       default:
         throw new Error(`unknown type: ${play.type}`);
     }
+
     // add volume credits
     volumeCredits += Math.max(perf.audience - 30, 0);
     // add extra credit for every ten comedy attendees
@@ -70,3 +72,10 @@ function statement(invoice, plays) {
 }
 
 console.log(statement(invoices[0], plays));
+
+// Statement for BigCo
+//  Hamlet: $650.00 (55 seats)
+//  As You Like It: $580.00 (35 seats)
+//  Othello: $500.00 (40 seats)
+// Amount owed is $1,730.00
+// You earned 47 credits
